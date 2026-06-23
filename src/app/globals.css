@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --bg-body: #fef9f0;
+  --text-color: #2d2d2d;
+  --bg-card: #ffffff;
+  --text-heading: #1f2937;
+  --border-color: #e5e7eb;
+  --muted: #6b7280;
+}
+
+html.dark {
+  --bg-body: #0f172a;
+  --text-color: #e2e8f0;
+  --bg-card: #1e293b;
+  --text-heading: #f1f5f9;
+  --border-color: #334155;
+  --muted: #94a3b8;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode overrides for common Tailwind classes */
+html.dark .bg-white { background-color: var(--bg-card) !important; }
+html.dark .bg-gray-50 { background-color: #1e293b !important; }
+html.dark .border-gray-200 { border-color: var(--border-color) !important; }
+html.dark .text-gray-800 { color: var(--text-heading) !important; }
+html.dark .text-gray-900 { color: var(--text-heading) !important; }
+html.dark .text-gray-500 { color: var(--muted) !important; }
+html.dark .text-gray-600 { color: var(--muted) !important; }
+html.dark .text-gray-700 { color: #cbd5e1 !important; }

@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name     String
+  age      Int?
+  avatar   String?
+  level    Int  @default(1)
+  points   Int  @default(0)
+  hearts   Int  @default(5)
+
+  progress  LessonProgress[]
+  badges    StudentBadge[]
+  gameScores GameScore[]
+
+  @@map("students")
+}
+
+model Lesson {
+  id        String @id @default(cuid())
+  level     Int    @default(1)
+  order     Int    @default(0)
+  title     String
+  titleAr   String
+  icon      String?
+  color     String @default("sky")
+  type      String @default("vocabulary") // vocabulary, grammar, numbers, letters
+
+  progress LessonProgress[]
+
+  @@map("lessons")
+}
+
+model LessonProgress {
+  id        String   @id @default(cuid())
+  completed Boolean  @default(false)
+  score     Int      @default(0)
+  stars     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+
+  @@unique([studentId, lessonId])
+  @@map("lesson_progress")
+}
+
+model Badge {
+  id          String @id @default(cuid())
+  name        String
+  nameAr      String
+  description String
+  icon        String
+  condition   String // lessons_completed, points_reached, games_won
+
+  students StudentBadge[]
+
+  @@map("badges")
+}
+
+model StudentBadge {
+  id        String   @id @default(cuid())
+  earnedAt  DateTime @default(now())
+
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  badgeId   String
+  badge     Badge    @relation(fields: [badgeId], references: [id])
+
+  @@unique([studentId, badgeId])
+  @@map("student_badges")
+}
+
+model GameScore {
+  id        String   @id @default(cuid())
+  gameType  String   // memory, matching, writing, math
+  score     Int
+  playedAt  DateTime @default(now())
+
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+
+  @@map("game_scores")
+}
