@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { notFound, useParams } from 'next/navigation'
 import { lessons } from '@/data/lessons'
-import { ChevronLeft, ChevronRight, Volume2, Languages, Speech } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Volume2, Languages } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LessonDetailPage() {
@@ -40,10 +40,6 @@ export default function LessonDetailPage() {
           <span className="text-xs text-emerald-600 font-bold block mb-1 dark:text-emerald-400">🇸🇦 بالعربية</span>
           <span className="text-2xl font-bold text-emerald-800 dark:text-emerald-300">{word.ar}</span>
         </div>
-        <div className="inline-block rounded-2xl bg-orange-50 border-2 border-orange-200 px-6 py-3 mb-4 dark:bg-orange-900/30 dark:border-orange-700">
-          <span className="text-xs text-orange-600 font-bold block mb-1 dark:text-orange-400">🇩🇿 بالدارجة</span>
-          <span className="text-xl font-bold text-orange-800 dark:text-orange-300">{word.darja}</span>
-        </div>
 
         <div className="flex flex-wrap justify-center gap-2 mt-4">
           <button onClick={() => speak(word.en, 'en-US')} className="flex items-center gap-1.5 rounded-xl bg-blue-100 px-5 py-2.5 text-sm font-bold text-blue-700 hover:bg-blue-200 transition-all hover:scale-105 shadow-sm dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-800/50">
@@ -51,9 +47,6 @@ export default function LessonDetailPage() {
           </button>
           <button onClick={() => speak(word.ar, 'ar-SA')} className="flex items-center gap-1.5 rounded-xl bg-emerald-100 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-200 transition-all hover:scale-105 shadow-sm dark:bg-emerald-900/50 dark:text-emerald-300 dark:hover:bg-emerald-800/50">
             <Languages className="h-4 w-4" /> بالعربية
-          </button>
-          <button onClick={() => speak(word.darja, 'ar-SA')} className="flex items-center gap-1.5 rounded-xl bg-orange-100 px-5 py-2.5 text-sm font-bold text-orange-700 hover:bg-orange-200 transition-all hover:scale-105 shadow-sm dark:bg-orange-900/50 dark:text-orange-300 dark:hover:bg-orange-800/50">
-            <Speech className="h-4 w-4" /> بالدارجة
           </button>
         </div>
       </div>
