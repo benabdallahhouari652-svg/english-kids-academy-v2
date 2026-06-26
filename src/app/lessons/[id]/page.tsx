@@ -15,7 +15,7 @@ export default function LessonDetailPage() {
   const word = lesson.words[currentIndex]
 
   function speak(text: string, langCode: string) {
-    if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = langCode; u.volume = 1; u.rate = 0.95; speechSynthesis.speak(u) }
+    if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = langCode; u.volume = 1; u.rate = 1.15; u.pitch = 1.1; speechSynthesis.speak(u) }
   }
 
   return (
