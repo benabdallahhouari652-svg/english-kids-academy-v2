@@ -15,7 +15,7 @@ export default function StoryReaderPage() {
   const current = story.pages[page]
 
   function speak(text: string) {
-    if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.85; speechSynthesis.speak(u) }
+    if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.volume = 1; u.rate = 1.05; u.pitch = 1.1; speechSynthesis.speak(u) }
   }
 
   return (

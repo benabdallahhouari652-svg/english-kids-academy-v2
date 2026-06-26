@@ -60,7 +60,7 @@ function QuizGame({ onBack }: { onBack: () => void }) {
         </div>
         <div className="text-center mb-6">
           <div className="text-6xl mb-3">{w.emoji}</div>
-          <button onClick={() => { if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w.en); u.lang = 'en-US'; speechSynthesis.speak(u) } }}
+          <button onClick={() => { if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w.en); u.lang = 'en-US'; u.volume = 1; u.rate = 1.05; u.pitch = 1.1; speechSynthesis.speak(u) } }}
             className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 mb-2">
             <Volume2 className="h-4 w-4" /> {w.en}
           </button>
